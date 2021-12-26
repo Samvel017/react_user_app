@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import './app.scss';
+import UserBlocks from './Components/UserBlocks';
+import UserCreate from './Components/UserCreate';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  id = 0;
+  state = {
+    users: [],
+  };
+  addUserListItem = (InputName, InputAge, InputMail, GenSelect) => {
+    let lisItem = {
+      name: InputName,
+      age: InputAge,
+      mail: InputMail,
+      gender: GenSelect,
+      id: this.id++,
+    };
+    console.log(lisItem, 'userInfo');
+    this.setState(({ users }) => {
+      const newListItem = [...users, lisItem];
+      return {
+        users: newListItem,
+      };
+    });
+  };
+  delUserHandle = (index) => {
+    const newUsers = [...this.state.users];
+    newUsers.splice(index, 1);
+    this.setState({
+      users: newUsers,
+    });
+  };
+  render() {
+    return (
+      <div className="app">
+        <UserCreate
+          users={this.state.users}
+          addUserListItem={this.addUserListItem}
+        />
+        <UserBlocks
+          users={this.state.users}
+          delUserHandle={this.delUserHandle}
+        />
+      </div>
+    );
+  }
 }
-
-export default App;

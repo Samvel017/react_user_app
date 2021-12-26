@@ -1,0 +1,20 @@
+.user-create-form {
+  max-width: 300px;
+  height: max-content;
+  width: 100%;
+  border: 1px solid #eee;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-radius: 15px;
+  grid-gap: 20px;
+  .age-input {
+    max-width: 60px;
+  }
+  .email-input,
+  .password-input {
+    width: 100%;
+  }
+}
